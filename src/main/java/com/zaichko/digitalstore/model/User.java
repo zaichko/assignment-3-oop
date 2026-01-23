@@ -45,11 +45,7 @@ public class User extends BaseEntity implements Validate{
     }
 
     public void setEmail(String email){
-        if(email == null){
-            this.email = null;
-        } else {
-            this.email = email.trim();
-        }
+        this.email = (email == null) ? this.email : email.trim();
     }
 
 }

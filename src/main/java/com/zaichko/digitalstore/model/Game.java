@@ -7,11 +7,6 @@ public class Game extends DigitalContent{
     }
 
     @Override
-    public void validate(){
-        super.validate();
-    }
-
-    @Override
     public String getEntityType(){
         return "Game";
     }

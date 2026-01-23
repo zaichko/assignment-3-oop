@@ -3,28 +3,25 @@ package com.zaichko.digitalstore.service;
 import com.zaichko.digitalstore.exception.ResourceNotFoundException;
 import com.zaichko.digitalstore.model.Creator;
 import com.zaichko.digitalstore.model.Game;
-import com.zaichko.digitalstore.repository.CreatorRepository;
 import com.zaichko.digitalstore.repository.GameRepository;
 
 import java.util.List;
 
 public class GameService {
 
-    private final CreatorRepository creatorRepo;
+    private final CreatorService creatorService;
     private final GameRepository gameRepo;
 
-    public GameService(CreatorRepository creatorRepo,
+    public GameService(CreatorService creatorService,
                         GameRepository gameRepo){
-        this.creatorRepo = creatorRepo;
+        this.creatorService = creatorService;
         this.gameRepo = gameRepo;
     }
 
     public void createGame(Game game) {
         game.validate();
 
-        Creator creator = creatorRepo.getById(
-                game.getCreator().getId()
-        );
+        Creator creator = creatorService.getCreatorById(game.getCreator().getId());
 
         if (creator == null) {
             throw new ResourceNotFoundException("Creator with id " + game.getCreator().getId() + " does not exist");

@@ -24,6 +24,10 @@ public class MusicAlbum extends DigitalContent{
     @Override
     public void validate(){
         super.validate();
+        validateTrackCount(this.countTracks);
+    }
+
+    private void validateTrackCount(int countTracks){
         if(countTracks <= 0){
             throw new InvalidInputException("An album must have at least one track");
         }
@@ -34,10 +38,7 @@ public class MusicAlbum extends DigitalContent{
     }
 
     public void setCountTracks(int countTracks){
-        if(countTracks <= 0){
-            throw new InvalidInputException("An album must have at least one track");
-        }
-
+        validateTrackCount(countTracks);
         this.countTracks = countTracks;
     }
 

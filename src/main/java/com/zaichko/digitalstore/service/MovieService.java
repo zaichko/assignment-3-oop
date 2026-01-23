@@ -10,21 +10,19 @@ import java.util.List;
 
 public class MovieService {
 
-    private final CreatorRepository creatorRepo;
+    private final CreatorService creatorService;
     private final MovieRepository movieRepo;
 
-    public MovieService(CreatorRepository creatorRepo,
+    public MovieService(CreatorService creatorService,
                         MovieRepository movieRepo){
-        this.creatorRepo = creatorRepo;
+        this.creatorService = creatorService;
         this.movieRepo = movieRepo;
     }
 
     public void createMovie(Movie movie) {
         movie.validate();
 
-        Creator creator = creatorRepo.getById(
-                movie.getCreator().getId()
-        );
+        Creator creator = creatorService.getCreatorById(movie.getCreator().getId());
 
         if (creator == null) {
             throw new ResourceNotFoundException("Creator with id " + movie.getCreator().getId() + " does not exist");

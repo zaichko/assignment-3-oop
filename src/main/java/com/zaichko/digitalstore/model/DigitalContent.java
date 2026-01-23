@@ -19,14 +19,12 @@ public abstract class DigitalContent extends BaseEntity implements PricedItem, V
 
     @Override
     public String describe(){
-        String desc = (this.description == null || this.description.isBlank()) ? "No description" : this.description;
-        return getEntityType() + " ID: " + getId()
-                + "\t|\tName: " + getName()
+        return displayInfo()
                 + "\t|\tCreator: " + getCreator().getName()
                 + "\t|\tRelease year: " + getReleaseYear()
                 + "\t|\tAvailable: " + availabilityString()
                 + "\t|\tPrice: " + getPrice()
-                + "\t|\tDescription: " + desc;
+                + "\t|\tDescription: " + getDescription();
     }
 
     @Override
@@ -44,16 +42,13 @@ public abstract class DigitalContent extends BaseEntity implements PricedItem, V
         if(creator == null){
             throw new InvalidInputException("A content must have a creator");
         }
-        if(!(releaseYear > 0)){
+        if(releaseYear <= 0){
             throw new InvalidInputException("Invalid release year");
         }
     }
 
     public String availabilityString(){
-        if (available){
-            return "Yes";
-        }
-        return "No";
+        return (available) ? "Yes" : "No";
     }
 
     public int getReleaseYear(){

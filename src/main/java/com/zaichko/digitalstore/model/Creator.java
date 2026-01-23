@@ -1,6 +1,6 @@
 package com.zaichko.digitalstore.model;
 
-public class Creator extends BaseEntity implements Validate{
+public class Creator extends BaseEntity{
 
     private String country;
     private String bio;
@@ -28,16 +28,6 @@ public class Creator extends BaseEntity implements Validate{
     @Override
     public String getEntityType(){
         return "Creator";
-    }
-
-    @Override
-    public void validate(){
-        if (this.country == null || this.country.isBlank()){
-            this.country = "No data";
-        }
-        if (this.bio == null || this.bio.isBlank()){
-            this.bio = "No biography written yet";
-        }
     }
 
     public String getCountry(){

@@ -59,9 +59,9 @@ public class Main {
 
         userService = new UserService(userRepo);
         creatorService = new CreatorService(creatorRepo);
-        gameService = new GameService(creatorRepo, gameRepo);
-        movieService = new MovieService(creatorRepo, movieRepo);
-        musicAlbumService = new MusicAlbumService(creatorRepo, musicAlbumRepo);
+        gameService = new GameService(creatorService, gameRepo);
+        movieService = new MovieService(creatorService, movieRepo);
+        musicAlbumService = new MusicAlbumService(creatorService, musicAlbumRepo);
         purchaseService = new PurchaseService(
                 purchaseRepo, userRepo, gameRepo, movieRepo, musicAlbumRepo);
     }

@@ -10,21 +10,19 @@ import java.util.List;
 
 public class MusicAlbumService {
 
-    private final CreatorRepository creatorRepo;
+    private final CreatorService creatorService;
     private final MusicAlbumRepository albumRepo;
 
-    public MusicAlbumService(CreatorRepository creatorRepo,
+    public MusicAlbumService(CreatorService creatorService,
                         MusicAlbumRepository albumRepo){
-        this.creatorRepo = creatorRepo;
+        this.creatorService = creatorService;
         this.albumRepo = albumRepo;
     }
 
     public void createMusicAlbum(MusicAlbum album) {
         album.validate();
 
-        Creator creator = creatorRepo.getById(
-                album.getCreator().getId()
-        );
+        Creator creator = creatorService.getCreatorById(album.getCreator().getId());
 
         if (creator == null) {
             throw new ResourceNotFoundException("Creator with id " + album.getCreator().getId() + " does not exist");

@@ -21,10 +21,7 @@ public class Movie extends DigitalContent{
 
     @Override
     public double getPrice(){
-        if(this.rentable){
-            return 4.99;
-        }
-        return 25.00;
+        return (this.rentable) ? 4.99 : 25.00;
     }
 
     @Override
@@ -40,7 +37,7 @@ public class Movie extends DigitalContent{
     }
 
     public void setDurationMinutes(int minutes){
-        if(durationMinutes <= 0){
+        if(minutes <= 0){
             throw new InvalidInputException("Invalid movie duration in minutes");
         }
         this.durationMinutes = minutes;

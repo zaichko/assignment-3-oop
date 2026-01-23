@@ -16,7 +16,7 @@ public abstract class BaseEntity {
     }
 
     public String displayInfo(){
-        return id + ": " + name;
+        return getEntityType() + "ID: " + id + "\t|\tName: " + name;
     }
 
     public abstract String describe();
@@ -39,6 +39,9 @@ public abstract class BaseEntity {
     }
 
     public void setName(String name){
+        if(name == null || name.isBlank()){
+            throw new InvalidInputException("Name cannot be blank");
+        }
         this.name = name;
     }
 

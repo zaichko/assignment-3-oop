@@ -15,8 +15,6 @@ public class CreatorService {
     }
 
     public void createCreator(Creator creator) {
-        creator.validate();
-
         creatorRepo.create(creator);
     }
 
@@ -37,8 +35,6 @@ public class CreatorService {
     }
 
     public void updateCreator(int id, Creator creator){
-
-        creator.validate();
 
         if(creatorRepo.getById(id) == null){
             throw new ResourceNotFoundException("Creator not found");

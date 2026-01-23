@@ -232,8 +232,10 @@ Successful creation of entities<br />
 ![create_success.png](docs/screenshots/create_success.png)
 
 Successful CRUD operations<br />
+![crud_operations.png](docs/screenshots/crud_operations.png)
 
 Validation errors (duplicate purchase, invalid input)<br />
+![validation.png](docs/screenshots/validation.png)
 
 Database state before and after operations<br />
 ![user_change.png](docs/screenshots/user_change.png)<br />

@@ -3,13 +3,15 @@ package com.zaichko.digitalstore.repository;
 import com.zaichko.digitalstore.exception.DatabaseOperationException;
 import com.zaichko.digitalstore.model.Creator;
 import com.zaichko.digitalstore.model.Game;
+import com.zaichko.digitalstore.repository.interfaces.CrudRepository;
+import com.zaichko.digitalstore.repository.interfaces.GameRepositoryInterface;
 import com.zaichko.digitalstore.utils.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameRepository implements CrudRepository<Game>{
+public class GameRepository implements GameRepositoryInterface {
 
     @Override
     public void create(Game entity){

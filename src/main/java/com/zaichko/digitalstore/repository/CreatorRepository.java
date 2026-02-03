@@ -2,13 +2,15 @@ package com.zaichko.digitalstore.repository;
 
 import com.zaichko.digitalstore.exception.DatabaseOperationException;
 import com.zaichko.digitalstore.model.Creator;
+import com.zaichko.digitalstore.repository.interfaces.CreatorRepositoryInterface;
+import com.zaichko.digitalstore.repository.interfaces.CrudRepository;
 import com.zaichko.digitalstore.utils.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreatorRepository implements CrudRepository<Creator> {
+public class CreatorRepository implements CreatorRepositoryInterface {
 
     @Override
     public void create(Creator entity){
@@ -86,6 +88,7 @@ public class CreatorRepository implements CrudRepository<Creator> {
         }
     }
 
+    @Override
     public boolean hasContentByCreatorId(int creatorId) {
         String sql = """
         SELECT 1
@@ -108,6 +111,7 @@ public class CreatorRepository implements CrudRepository<Creator> {
         }
     }
 
+    @Override
     public Creator findCreatorWithMaxRevenue(){
         String sql = """
                 SELECT c.id,
@@ -141,6 +145,7 @@ public class CreatorRepository implements CrudRepository<Creator> {
         }
     }
 
+    @Override
     public double findMaxRevenue(){
         String sql = """
                 SELECT SUM(p.price_paid) AS total_revenue

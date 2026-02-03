@@ -1,4 +1,4 @@
-package com.zaichko.digitalstore.repository;
+package com.zaichko.digitalstore.repository.interfaces;
 
 import com.zaichko.digitalstore.model.Purchase;
 

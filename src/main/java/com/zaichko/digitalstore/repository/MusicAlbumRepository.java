@@ -3,13 +3,15 @@ package com.zaichko.digitalstore.repository;
 import com.zaichko.digitalstore.exception.DatabaseOperationException;
 import com.zaichko.digitalstore.model.Creator;
 import com.zaichko.digitalstore.model.MusicAlbum;
+import com.zaichko.digitalstore.repository.interfaces.CrudRepository;
+import com.zaichko.digitalstore.repository.interfaces.MusicAlbumRepositoryInterface;
 import com.zaichko.digitalstore.utils.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicAlbumRepository implements CrudRepository<MusicAlbum> {
+public class MusicAlbumRepository implements MusicAlbumRepositoryInterface {
 
     @Override
     public void create(MusicAlbum entity){

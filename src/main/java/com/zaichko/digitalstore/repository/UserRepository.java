@@ -2,13 +2,15 @@ package com.zaichko.digitalstore.repository;
 
 import com.zaichko.digitalstore.exception.DatabaseOperationException;
 import com.zaichko.digitalstore.model.User;
+import com.zaichko.digitalstore.repository.interfaces.CrudRepository;
+import com.zaichko.digitalstore.repository.interfaces.UserRepositoryInterface;
 import com.zaichko.digitalstore.utils.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepository implements CrudRepository<User> {
+public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public void create(User entity){
@@ -81,6 +83,7 @@ public class UserRepository implements CrudRepository<User> {
         }
     }
 
+    @Override
     public User getByEmail(String email){
         String sql = "SELECT * FROM users WHERE email = ?";
 

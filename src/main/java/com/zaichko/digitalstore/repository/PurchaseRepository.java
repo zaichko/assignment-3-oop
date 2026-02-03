@@ -2,13 +2,14 @@ package com.zaichko.digitalstore.repository;
 
 import com.zaichko.digitalstore.exception.DatabaseOperationException;
 import com.zaichko.digitalstore.model.Purchase;
+import com.zaichko.digitalstore.repository.interfaces.PurchaseRepositoryInterface;
 import com.zaichko.digitalstore.utils.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurchaseRepository implements PurchaseRepositoryInterface{
+public class PurchaseRepository implements PurchaseRepositoryInterface {
 
     @Override
     public void create(Purchase entity){

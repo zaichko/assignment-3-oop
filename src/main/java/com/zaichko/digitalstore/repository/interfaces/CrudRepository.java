@@ -1,4 +1,4 @@
-package com.zaichko.digitalstore.repository;
+package com.zaichko.digitalstore.repository.interfaces;
 
 import java.sql.SQLException;
 import java.util.List;

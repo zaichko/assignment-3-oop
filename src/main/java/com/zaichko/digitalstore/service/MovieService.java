@@ -3,7 +3,6 @@ package com.zaichko.digitalstore.service;
 import com.zaichko.digitalstore.exception.ResourceNotFoundException;
 import com.zaichko.digitalstore.model.Creator;
 import com.zaichko.digitalstore.model.Movie;
-import com.zaichko.digitalstore.repository.CreatorRepository;
 import com.zaichko.digitalstore.repository.MovieRepository;
 
 import java.util.List;

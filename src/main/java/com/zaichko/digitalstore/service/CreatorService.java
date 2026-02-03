@@ -1,5 +1,6 @@
 package com.zaichko.digitalstore.service;
 
+import com.zaichko.digitalstore.exception.InvalidInputException;
 import com.zaichko.digitalstore.exception.ResourceNotFoundException;
 import com.zaichko.digitalstore.model.Creator;
 import com.zaichko.digitalstore.repository.CreatorRepository;
@@ -15,6 +16,8 @@ public class CreatorService {
     }
 
     public void createCreator(Creator creator) {
+        creator.validate();
+
         creatorRepo.create(creator);
     }
 
@@ -34,6 +37,20 @@ public class CreatorService {
 
     }
 
+    public Creator getTopEarningCreator() {
+        Creator creator = creatorRepo.findCreatorWithMaxRevenue();
+
+        if (creator == null) {
+            throw new ResourceNotFoundException("No revenue data available");
+        }
+
+        return creator;
+    }
+
+    public double getTopEarnings(){
+        return creatorRepo.findMaxRevenue();
+    }
+
     public void updateCreator(int id, Creator creator){
 
         if(creatorRepo.getById(id) == null){
@@ -48,6 +65,10 @@ public class CreatorService {
 
         if(creatorRepo.getById(id) == null){
             throw new ResourceNotFoundException("Creator not found");
+        }
+
+        if(creatorRepo.hasContentByCreatorId(id)){
+            throw new InvalidInputException("Cannot delete creator with existing content");
         }
 
         creatorRepo.delete(id);

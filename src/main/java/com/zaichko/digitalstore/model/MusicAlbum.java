@@ -11,8 +11,18 @@ public class MusicAlbum extends DigitalContent{
         this.countTracks = countTracks;
     }
 
+    public String describe(){
+        return displayInfo()
+                + "\t|\tCreator: " + getCreator().getName()
+                + "\t|\tRelease year: " + getReleaseYear()
+                + "\t|\tTracks: " + getCountTracks()
+                + "\t|\tAvailable: " + availabilityString()
+                + "\t|\tPrice: " + getPrice()
+                + "\t|\tDescription: " + getDescription();
+    }
+
     @Override
-    public String getEntityType(){
+    public String getContentType(){
         return "MusicAlbum";
     }
 

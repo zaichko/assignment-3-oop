@@ -70,4 +70,7 @@ VALUES ('Fight Club', 3, 1999, true, NULL, 'Movie', 140, true, NULL),
        ('Metal Gear', 2, 1987, false, NULL, 'Game', NULL, NULL, NULL),
        ('Zodiac', 3, 2007, true, NULL, 'Movie', 157, false, NULL);
 
-INSERT INTO purchases (user_id, content_id, price_paid, purchase_date) VALUES (1, 1, 4.99, 2025-12-21);
+INSERT INTO purchases (user_id, content_id, price_paid, purchase_date) VALUES
+                    (1, 1, 4.99, '2025-12-21'),
+                    (1, 2, 14.55, '2025-12-26'),
+                    (2, 3, 15.98, '2026-01-01');

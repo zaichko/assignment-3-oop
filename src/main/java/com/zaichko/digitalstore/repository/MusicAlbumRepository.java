@@ -27,7 +27,7 @@ public class MusicAlbumRepository implements CrudRepository<MusicAlbum> {
             ps.setInt(3, entity.getReleaseYear());
             ps.setBoolean(4,entity.isAvailable());
             ps.setString(5,entity.getDescription());
-            ps.setString(6, entity.getEntityType());
+            ps.setString(6, entity.getContentType());
             ps.setInt(7, entity.getCountTracks());
 
             ps.executeUpdate();

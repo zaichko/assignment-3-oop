@@ -1,6 +1,8 @@
 package com.zaichko.digitalstore.model;
 
-public class Creator extends BaseEntity{
+import com.zaichko.digitalstore.exception.InvalidInputException;
+
+public class Creator extends BaseEntity implements Validate{
 
     private String country;
     private String bio;
@@ -13,11 +15,16 @@ public class Creator extends BaseEntity{
 
     @Override
     public String describe(){
-        String biography = (this.bio == null || this.bio.isBlank()) ? "No biography" : this.bio;
-        return getEntityType() + " ID: " + getId()
-                + "\t|\tName: " + getName()
-                + "\t|\tCountry: " + this.country
-                + "\t|\tBiography: " + this.bio;
+        return displayInfo()
+                + "\t|\tCountry: " + getCountry()
+                + "\t|\tBiography: " + getBio();
+    }
+
+    @Override
+    public void validate(){
+        if(getName() == null || getName().isBlank()){
+            throw new InvalidInputException("Creator name cannot be empty");
+        }
     }
 
     @Override
@@ -35,7 +42,7 @@ public class Creator extends BaseEntity{
     }
 
     public String getBio(){
-        return this.bio;
+        return (this.bio == null || this.bio.isBlank()) ? "No biography" : this.bio;
     }
 
     public void setCountry(String country){

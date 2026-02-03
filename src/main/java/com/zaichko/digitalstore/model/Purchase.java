@@ -36,7 +36,7 @@ public class Purchase implements Validate {
         if (contentId <= 0) {
             throw new InvalidInputException("Invalid content id");
         }
-        if (pricePaid <= 0) {
+        if (pricePaid < 0) {
             throw new InvalidInputException("Price must be positive");
         }
     }
@@ -71,7 +71,7 @@ public class Purchase implements Validate {
 
     public void setPurchaseId(int id){
         if (this.purchaseId != 0){
-            throw new DuplicateResourceException("ID is already set");
+            throw new DuplicateResourceException("ID for this purchase is already set");
         }
         this.purchaseId = id;
     }

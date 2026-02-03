@@ -141,6 +141,14 @@ System.out.println(content.describe());
 
 Different subclasses produce different behavior through the same interface.
 
+### Exception Hierarchy
+```
+InvalidInputException (base)
+  └── DuplicateResourceException
+ResourceNotFoundException
+DatabaseOperationException
+```
+
 ### UML Diagram
 
 ![uml-diagram.png](docs/uml-diagram.png)
@@ -228,14 +236,20 @@ Or simply run Main from IntelliJ IDEA.
 
 Screenshots included in /screenshots folder:
 
-Successful creation of entities<br />
-![create_success.png](docs/screenshots/create_success.png)
-
 Successful CRUD operations<br />
-![crud_operations.png](docs/screenshots/crud_operations.png)
+![create.png](docs/screenshots/create.png)
+![read.png](docs/screenshots/read.png)
+![update.png](docs/screenshots/update.png)
+![delete.png](docs/screenshots/delete.png)
 
-Validation errors (duplicate purchase, invalid input)<br />
+Validation <br />
 ![validation.png](docs/screenshots/validation.png)
+
+Polymorphism through describe()<br />
+![polymorphism.png](docs/screenshots/polymorphism.png)
+
+Additional method: Show top creator<br />
+![additional_method.png](docs/screenshots/additional_method.png)
 
 Database state before and after operations<br />
 ![user_change.png](docs/screenshots/user_change.png)<br />

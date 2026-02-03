@@ -1,14 +1,16 @@
 package com.zaichko.digitalstore;
 
-import com.zaichko.digitalstore.exception.DatabaseOperationException;
 import com.zaichko.digitalstore.exception.DuplicateResourceException;
 import com.zaichko.digitalstore.exception.InvalidInputException;
 import com.zaichko.digitalstore.exception.ResourceNotFoundException;
 import com.zaichko.digitalstore.model.*;
 import com.zaichko.digitalstore.repository.*;
 import com.zaichko.digitalstore.service.*;
+import com.zaichko.digitalstore.utils.ReflectionUtil;
+import com.zaichko.digitalstore.utils.SortingUtil;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -47,8 +49,14 @@ public class Main {
             System.out.println("--- ADDITIONAL METHOD: TOP CREATOR ---");
             topCreator();
 
+            System.out.println("--- LAMBDA EXPRESSION ---");
+            lambdaDemo();
 
-        } catch (Exception e){
+            System.out.println("--- DEMONSTRATING RUNTIME INSPECTION ---");
+            reflectionDemo();
+
+
+        } catch (RuntimeException e){
             System.out.println("Unexpected error: " + e.getMessage());
         }
     }
@@ -199,4 +207,16 @@ public class Main {
         System.out.println("Creator with most revenue:\n" + top.describe() + "\t|\tTotal revenue: " + creatorService.getTopEarnings());
     }
 
+    private static void lambdaDemo(){
+        List<Game> sortedGames =
+                SortingUtil.sortedCopy(
+                        gameService.getAllGames(),
+                        Comparator.comparingInt(Game::getReleaseYear)
+                );
+    }
+
+    private static void reflectionDemo() {
+        DigitalContent content = gameService.getAllGames().getFirst();
+        ReflectionUtil.inspect(content);
+    }
 }

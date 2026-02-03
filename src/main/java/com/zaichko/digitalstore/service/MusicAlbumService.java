@@ -3,7 +3,6 @@ package com.zaichko.digitalstore.service;
 import com.zaichko.digitalstore.exception.ResourceNotFoundException;
 import com.zaichko.digitalstore.model.Creator;
 import com.zaichko.digitalstore.model.MusicAlbum;
-import com.zaichko.digitalstore.repository.CreatorRepository;
 import com.zaichko.digitalstore.repository.MusicAlbumRepository;
 
 import java.util.List;

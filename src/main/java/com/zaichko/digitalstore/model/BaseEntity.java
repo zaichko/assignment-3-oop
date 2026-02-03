@@ -16,7 +16,7 @@ public abstract class BaseEntity {
     }
 
     public String displayInfo(){
-        return getEntityType() + "ID: " + id + "\t|\tName: " + name;
+        return getEntityType() + "ID: " + getId() + "\t|\tName: " + getName();
     }
 
     public abstract String describe();

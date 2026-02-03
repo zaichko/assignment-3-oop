@@ -7,7 +7,17 @@ public class Game extends DigitalContent{
     }
 
     @Override
-    public String getEntityType(){
+    public String describe(){
+        return displayInfo()
+                + "\t|\tCreator: " + getCreator().getName()
+                + "\t|\tRelease year: " + getReleaseYear()
+                + "\t|\tAvailable: " + availabilityString()
+                + "\t|\tPrice: " + getPrice()
+                + "\t|\tDescription: " + getDescription();
+    }
+
+    @Override
+    public String getContentType(){
         return "Game";
     }
 

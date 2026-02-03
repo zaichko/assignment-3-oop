@@ -14,9 +14,8 @@ public class User extends BaseEntity implements Validate{
 
     @Override
     public String describe(){
-        return getEntityType() + " ID: " + getId()
-                + "\t|\tName: " + getName()
-                + "\t|\tEmail: " + this.email;
+        return displayInfo()
+                + "\t|\tEmail: " + getEmail();
     }
 
     @Override
@@ -31,11 +30,15 @@ public class User extends BaseEntity implements Validate{
 
     @Override
     public void validate() {
-        if (email == null || email.isBlank()) {
+        if(getName() == null || getName().isBlank()){
+            throw new InvalidInputException("User name cannot be empty");
+        }
+
+        if (getEmail() == null || getEmail().isBlank()) {
             throw new InvalidInputException("User email cannot be empty");
         }
 
-        if (!email.contains("@")) {
+        if (!getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
             throw new InvalidInputException("Invalid email format");
         }
     }

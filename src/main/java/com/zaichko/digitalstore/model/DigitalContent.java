@@ -17,15 +17,14 @@ public abstract class DigitalContent extends BaseEntity implements PricedItem, V
         this.available = available;
     }
 
-    @Override
-    public String describe(){
-        return displayInfo()
-                + "\t|\tCreator: " + getCreator().getName()
-                + "\t|\tRelease year: " + getReleaseYear()
-                + "\t|\tAvailable: " + availabilityString()
-                + "\t|\tPrice: " + getPrice()
-                + "\t|\tDescription: " + getDescription();
+    public double calculateDiscountedPrice(double discountPercent) {
+        return getPrice() * (1 - discountPercent / 100);
     }
+
+    @Override
+    public abstract String describe();
+
+    public abstract String getContentType();
 
     @Override
     public String toString() {
@@ -33,15 +32,15 @@ public abstract class DigitalContent extends BaseEntity implements PricedItem, V
     }
 
     @Override
-    public String getEntityType(){
-        return "DigitalContent";
-    }
-
-    @Override
     public void validate(){
+        if(getName() == null || getName().isBlank()){
+            throw new InvalidInputException("Content name cannot be empty");
+        }
+
         if(creator == null){
             throw new InvalidInputException("A content must have a creator");
         }
+
         if(releaseYear <= 0){
             throw new InvalidInputException("Invalid release year");
         }
@@ -49,6 +48,11 @@ public abstract class DigitalContent extends BaseEntity implements PricedItem, V
 
     public String availabilityString(){
         return (available) ? "Yes" : "No";
+    }
+
+    @Override
+    public String getEntityType(){
+        return "DigitalContent";
     }
 
     public int getReleaseYear(){
@@ -73,14 +77,14 @@ public abstract class DigitalContent extends BaseEntity implements PricedItem, V
 
     public void setReleaseYear(int releaseYear){
         if(releaseYear <= 0){
-            throw new InvalidInputException("Release year is not valid");
+            throw new InvalidInputException("Invalid release year");
         }
         this.releaseYear = releaseYear;
     }
 
     public void setCreator(Creator creator){
         if(creator == null){
-            throw new InvalidInputException("A digital content must have a creator");
+            throw new InvalidInputException("A content must have a creator");
         }
         this.creator = creator;
     }

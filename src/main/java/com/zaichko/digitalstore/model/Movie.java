@@ -14,8 +14,19 @@ public class Movie extends DigitalContent{
         this.durationMinutes = durationMinutes;
     }
 
+    public String describe(){
+        return displayInfo()
+                + "\t|\tCreator: " + getCreator().getName()
+                + "\t|\tRelease year: " + getReleaseYear()
+                + "\t|\tDuration in minutes: " + getDurationMinutes()
+                + "\t|\tRentable: " + rentabilityToString()
+                + "\t|\tAvailable: " + availabilityString()
+                + "\t|\tPrice: " + getPrice()
+                + "\t|\tDescription: " + getDescription();
+    }
+
     @Override
-    public String getEntityType(){
+    public String getContentType(){
         return "Movie";
     }
 
@@ -45,6 +56,10 @@ public class Movie extends DigitalContent{
 
     public boolean getRentability(){
         return this.rentable;
+    }
+
+    public String rentabilityToString(){
+        return (rentable) ? "Yes" : "No";
     }
 
     public int getDurationMinutes(){
